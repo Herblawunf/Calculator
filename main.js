@@ -4,6 +4,7 @@ const subtractOp = document.querySelector(".subtract");
 const multiplyOp = document.querySelector(".multiply");
 const divideOp = document.querySelector(".divide");
 const equalsOp = document.querySelector(".equals");
+const backSpace = document.querySelector(".backspace");
 
 function add(n1, n2){
     return n1 + n2;
@@ -41,15 +42,32 @@ let usedOperation;
 let n1;
 let n2;
 
+let dotCheck = false;
 
 number.forEach(function(number){
     number.addEventListener("click", function(e){
         let num = e.target.id;
-        // console.log(num);
 
-        inString = inString.concat(num);
-        displayText.innerHTML = `${inString}`;
+        if(num === '.' && dotCheck){
+            console.log('Dot already in number');
+        } else if(num === '.'){
+            dotCheck = true;
+            inString = inString.concat(num);
+            displayText.innerHTML = `${inString}`;
+        } else {
+            inString = inString.concat(num);
+            displayText.innerHTML = `${inString}`;
+        }
     });
+});
+
+backSpace.addEventListener("click", function(e) {
+    if(inString[inString.length - 1] === '.'){
+        dotCheck = false;
+    }
+
+    inString = inString.substring(0, inString.length-1);
+    displayText.innerHTML = `${inString}`;
 });
 
 
@@ -95,18 +113,24 @@ divideOp.addEventListener("click",function(e){
 });
 
 equalsOp.addEventListener("click",function(e){
-    n2 = parseFloat(inString, 10);
-    console.log(n2);
-    clearDisplay();
-    let returnValue = (usedOperation(n1, n2).toFixed(15));
-    inString = returnValue;
+    if(usedOperation){
+        n2 = parseFloat(inString, 10);
+        console.log(n2);
+        clearDisplay();
+        let returnValue = (usedOperation(n1, n2).toFixed(10));
+        inString = returnValue;
 
-    if(divCheck === true && n2 === 0){
-        inString = 'You can\'t do that';
-        n1 = '';
-        n2 = '';
+        if(divCheck === true && n2 === 0){
+            inString = 'You can\'t do that';
+            n1 = '';
+            n2 = '';
+        }
+
+        while(inString.lastIndexOf("0") === inString.length -1){
+            inString = inString.substring(0, inString.length -2);
+        }
+
+        displayText.innerHTML = `${inString}`;
+        usedOperation = 0;
     }
-
-    inString = inString.substring(0, 8);
-    displayText.innerHTML = `${inString}`;
 });
