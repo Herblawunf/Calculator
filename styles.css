@@ -1,0 +1,29 @@
+body {
+    background-color: antiquewhite;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    font-family: "helvetica Neue",sans-serif;
+}
+
+.box {
+    width: 25vw;
+    height: 75vh;
+    border: 15px solid gray;
+    border-radius: 10px;
+    background-color: olivedrab;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 30px;
+}
+
+.display {
+    width: 40vh;
+    height: 10vh;
+    background-color: gray;
+    padding-left: 20px;
+    margin-bottom: 30px;
+}
