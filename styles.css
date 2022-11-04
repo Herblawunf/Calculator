@@ -17,7 +17,46 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: space-between;
     padding: 30px;
+}
+
+.butts {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 70px;
+}
+
+.operations {
+    display: flex;
+    width: 20vw;
+    height: 8vh;
+    justify-content: space-around;
+}
+
+.operation {
+    width: 3.75vw;
+    height: 4.5vh;
+    margin: 0.75vh;
+}
+
+.numbers {
+    display: flex;
+    flex-wrap: wrap;
+    width: 20vw;
+    height: 32vh;
+    justify-content: center;
+}
+
+.number {
+    width: 5vw;
+    height: 6vh;
+    margin: 1vh;
+}
+
+#pH {
+    background-color: olivedrab;
+    border: solid olivedrab;
 }
 
 .display {
@@ -26,4 +65,18 @@ body {
     background-color: gray;
     padding-left: 20px;
     margin-bottom: 30px;
+    margin-top: 30px;
+}
+
+.functions {
+    display: flex;
+    width: 20vw;
+    height: 8vh;
+    justify-content: space-around;
+}
+
+.func {
+    width: 5vw;
+    height: 6vh;
+    margin: 1vh;
 }

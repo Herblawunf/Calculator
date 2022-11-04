@@ -127,7 +127,11 @@ equalsOp.addEventListener("click",function(e){
         }
 
         while(inString.lastIndexOf("0") === inString.length -1){
-            inString = inString.substring(0, inString.length -2);
+            inString = inString.substring(0, inString.length -1);
+        }
+
+        if(inString.lastIndexOf(".") === inString.length -1){
+            inString = inString.substring(0, inString.length -1);
         }
 
         displayText.innerHTML = `${inString}`;
