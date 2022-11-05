@@ -6,6 +6,14 @@ const divideOp = document.querySelector(".divide");
 const equalsOp = document.querySelector(".equals");
 const backSpace = document.querySelector(".backspace");
 
+const numArr = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '.'];
+
+let tempString;
+
+function stringClip(str) {
+    return str.substring(0, str.length - 1);
+}
+
 function add(n1, n2){
     return n1 + n2;
 }
@@ -59,7 +67,10 @@ number.forEach(function(number){
             displayText.innerHTML = `${inString}`;
         }
     });
+    
 });
+
+
 
 backSpace.addEventListener("click", function(e) {
     if(inString[inString.length - 1] === '.'){
@@ -112,7 +123,7 @@ divideOp.addEventListener("click",function(e){
     divCheck = true;
 });
 
-equalsOp.addEventListener("click",function(e){
+function equa() {
     if(usedOperation){
         n2 = parseFloat(inString, 10);
         console.log(n2);
@@ -137,4 +148,54 @@ equalsOp.addEventListener("click",function(e){
         displayText.innerHTML = `${inString}`;
         usedOperation = 0;
     }
+}
+
+equalsOp.addEventListener("click",function(e){
+    equa();
 });
+
+document.addEventListener("keydown", function(e){
+    console.log(e.key);
+    if(e.code === "Equal"){
+        equa();
+    } else if(numArr.includes(e.key) && e.key != "Enter"){
+        let num = e.key;
+        console.log("Key is num");
+        if(num === '.' && dotCheck){
+            console.log('Dot already in number');
+        } else if(num === '.'){
+            dotCheck = true;
+            inString = inString.concat(num);
+            displayText.innerHTML = `${inString}`;
+        } else {
+            inString = inString.concat(num);
+            displayText.innerHTML = `${inString}`;
+        }
+    } else if(e.key === 'Backspace'){
+        if(inString[inString.length - 1] === '.'){
+            dotCheck = false;
+        }
+    
+        inString = inString.substring(0, inString.length-1);
+        displayText.innerHTML = `${inString}`;
+    } else if(e.key === '-'){
+        n1 = parseFloat(inString, 10);
+        clearDisplay();
+        usedOperation = function(a,b){return subtract(a,b)};
+    } else if(e.key === 'x'){
+        n1 = parseFloat(inString, 10);
+        clearDisplay();
+        usedOperation = function(a,b){return multiply(a,b)};
+    } else if(e.key === '/') {
+        n1 = parseFloat(inString, 10);
+        clearDisplay();
+        usedOperation = function(a,b){return divide(a,b)};
+    } else if(e.key === " "){
+        n1 = parseFloat(inString, 10);
+        clearDisplay();
+        usedOperation = function(a,b){return add(a,b)};
+    } else if(e.key === "Escape"){
+        clearDisplay();
+    }
+});
+
