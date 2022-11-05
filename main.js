@@ -190,7 +190,7 @@ document.addEventListener("keydown", function(e){
         n1 = parseFloat(inString, 10);
         clearDisplay();
         usedOperation = function(a,b){return divide(a,b)};
-    } else if(e.key === " "){
+    } else if(e.key === " " || e.key === "+"){
         n1 = parseFloat(inString, 10);
         clearDisplay();
         usedOperation = function(a,b){return add(a,b)};
